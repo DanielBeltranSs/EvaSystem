@@ -11,19 +11,21 @@ const ModalEditMaterial = ({ isOpen, onClose, material }) => {
         tipo: '',
         unidad: '',
         codigoBarra: '',
+        valorDeVenta: '', // Nuevo campo
         image: null,
     });
     const [imageUrl, setImageUrl] = useState('');
 
     useEffect(() => {
         if (material && material.data) {
-            const { nombre, descripcion, tipo, unidad, codigoBarra, imageUrl: initialImageUrl } = material.data;
+            const { nombre, descripcion, tipo, unidad, codigoBarra, valorDeVenta, imageUrl: initialImageUrl } = material.data;
             setMaterialState({
                 nombre: nombre || '',
                 descripcion: descripcion || '',
                 tipo: tipo || '',
                 unidad: unidad || '',
                 codigoBarra: codigoBarra || '',
+                valorDeVenta: valorDeVenta || '', // Asignar el valor de venta si existe
                 image: null,
             });
             if (initialImageUrl && !initialImageUrl.startsWith(import.meta.env.VITE_BASE_URL)) {
@@ -60,6 +62,7 @@ const ModalEditMaterial = ({ isOpen, onClose, material }) => {
             formData.append("tipo", materialState.tipo);
             formData.append("unidad", materialState.unidad);
             formData.append("codigoBarra", materialState.codigoBarra || '');
+            formData.append("valorDeVenta", materialState.valorDeVenta || ''); // Enviar el valor de venta
             
             if (materialState.image) {
                 formData.append("image", materialState.image);
@@ -139,6 +142,19 @@ const ModalEditMaterial = ({ isOpen, onClose, material }) => {
                         onKeyPress={handleKeyPress}
                         className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm bg-gray-100 text-gray-700"
                         autoComplete="off"
+                    />
+                </div>
+                <div>
+                    <label className="block text-sm font-medium text-gray-700">Valor de Venta</label>
+                    <input
+                        type="number"
+                        id="valorDeVenta"
+                        name="valorDeVenta"
+                        value={materialState.valorDeVenta}
+                        onChange={handleInputChange}
+                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm bg-gray-100 text-gray-700"
+                        autoComplete="off"
+                        required
                     />
                 </div>
                 <div className="flex gap-4">

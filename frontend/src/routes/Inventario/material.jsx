@@ -135,6 +135,7 @@ const Material = () => {
                             <th className="py-4 px-6 text-left text-gray-600 font-bold uppercase">Descripción</th>
                             <th className="py-4 px-6 text-left text-gray-600 font-bold uppercase">Tipo</th>
                             <th className="py-4 px-6 text-left text-gray-600 font-bold uppercase">Unidad de Medida</th>
+                            <th className="py-4 px-6 text-left text-gray-600 font-bold uppercase">Valor de Venta</th>
                             <th className="py-4 px-6 text-left text-gray-600 font-bold uppercase">Acciones</th>
                         </tr>
                     </thead>
@@ -146,6 +147,7 @@ const Material = () => {
                                     <td className="py-4 px-6 border-b border-gray-200">{item.descripcion}</td>
                                     <td className="py-4 px-6 border-b border-gray-200">{item.tipo}</td>
                                     <td className="py-4 px-6 border-b border-gray-200">{item.unidad}</td>
+                                    <td className="py-4 px-6 border-b border-gray-200">{item.valorDeVenta || "N/A"}</td>
                                     <td className="py-4 px-6 border-b border-gray-200 text-center">
                                         <div className="flex justify-center space-x-2">
                                             <button 
@@ -174,7 +176,7 @@ const Material = () => {
                             ))
                         ) : (
                             <tr>
-                                <td colSpan="5" className="text-center py-4 text-gray-600">
+                                <td colSpan="6" className="text-center py-4 text-gray-600">
                                     No hay Materiales o Herramientas registradas.
                                 </td>
                             </tr>

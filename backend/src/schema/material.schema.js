@@ -15,7 +15,7 @@ const materialId = Joi.object({
 });
 
 /**
- * Esquema de validación para el cuerpo de la solicitud de inventario.
+ * Esquema de validación para el cuerpo de la solicitud de material.
  * @constant {Object}
  */
 const materialBodySchema = Joi.object({
@@ -23,7 +23,11 @@ const materialBodySchema = Joi.object({
     descripcion: Joi.string().min(2).max(400).required(),
     tipo: Joi.string().min(2).max(200).required(),
     unidad: Joi.string().min(1).max(200).required(),
-    codigoBarra: Joi.string().optional()// Asegúrate de que sea opcional si no se envía
+    codigoBarra: Joi.string().optional(), // Asegúrate de que sea opcional si no se envía
+    valorDeVenta: Joi.number().positive().optional().messages({ // Nuevo campo
+        "number.base": "El valor de venta debe ser un número.",
+        "number.positive": "El valor de venta debe ser un número positivo.",
+    }),
 }).messages({
     "object.unknown": "No se permiten propiedades adicionales.",
 });

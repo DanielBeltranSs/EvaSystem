@@ -17,21 +17,22 @@ async function getMaterial() {
 
 async function createMaterial(material) {
     try {
-      const newMaterial = new Material({
-        nombre: material.nombre,
-        descripcion: material.descripcion,
-        tipo: material.tipo,
-        unidad: material.unidad,
-        codigoBarra: material.codigoBarra || null,
-        imageUrl: material.imageUrl || null, // Nueva URL de imagen
-      });
-      await newMaterial.save();
-      return [newMaterial, null];
+        const newMaterial = new Material({
+            nombre: material.nombre,
+            descripcion: material.descripcion,
+            tipo: material.tipo,
+            unidad: material.unidad,
+            codigoBarra: material.codigoBarra || null,
+            imageUrl: material.imageUrl || null, // Nueva URL de imagen
+            valorDeVenta: material.valorDeVenta || null, // Nuevo campo opcional
+        });
+        await newMaterial.save();
+        return [newMaterial, null];
     } catch (error) {
-      handleError(error, "Material.service -> createMaterial");
-      return [null, error.message];
+        handleError(error, "Material.service -> createMaterial");
+        return [null, error.message];
     }
-  }
+}
 
 async function getMaterialById(id) {
     try {
@@ -63,7 +64,7 @@ async function updateMaterial(id, material) {
         const currentMaterial = await Material.findById(id).exec();
         if (!currentMaterial) return [null, "El Material no existe"];
 
-        // Si no se proporciona una nueva URL de imagen, mantén la existente
+        // Si no se proporciona un nuevo valor de venta o URL de imagen, mantén los existentes
         const updatedData = {
             nombre: material.nombre || currentMaterial.nombre,
             descripcion: material.descripcion || currentMaterial.descripcion,
@@ -71,6 +72,7 @@ async function updateMaterial(id, material) {
             unidad: material.unidad || currentMaterial.unidad,
             codigoBarra: material.codigoBarra || currentMaterial.codigoBarra,
             imageUrl: material.imageUrl || currentMaterial.imageUrl, // Mantén la imagen existente si no se envía una nueva
+            valorDeVenta: material.valorDeVenta !== undefined ? material.valorDeVenta : currentMaterial.valorDeVenta, // Mantén el valor de venta si no se proporciona
         };
 
         // Realiza la actualización con los datos modificados
@@ -81,7 +83,6 @@ async function updateMaterial(id, material) {
         return [null, error.message];
     }
 }
-
 
 async function deleteMaterial(id) {
     try {

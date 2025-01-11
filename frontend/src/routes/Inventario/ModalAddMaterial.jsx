@@ -12,6 +12,7 @@ const ModalAddMaterial = ({ isOpen, onClose }) => {
         unidad: '',
         codigoBarra: '',
         image: null,
+        valorDeVenta: '', // Nuevo campo
     });
 
     const handleInputChange = (e) => {
@@ -37,16 +38,20 @@ const ModalAddMaterial = ({ isOpen, onClose }) => {
             formData.append("descripcion", material.descripcion);
             formData.append("tipo", material.tipo);
             formData.append("unidad", material.unidad);
-            
+
             // Solo agregar el código de barras si tiene algún valor
             if (material.codigoBarra) {
                 formData.append("codigoBarra", material.codigoBarra);
             }
-            
+
             if (material.image) {
                 formData.append("image", material.image);
             }
-    
+
+            if (material.valorDeVenta) {
+                formData.append("valorDeVenta", material.valorDeVenta);
+            }
+
             await createMaterial(formData);
             toast.success('Material/Herramienta creado con éxito');
             setMaterial({
@@ -56,6 +61,7 @@ const ModalAddMaterial = ({ isOpen, onClose }) => {
                 unidad: '',
                 codigoBarra: '',
                 image: null,
+                valorDeVenta: '', // Resetear el valor de venta
             });
             onClose();
         } catch (error) {
@@ -63,7 +69,7 @@ const ModalAddMaterial = ({ isOpen, onClose }) => {
             toast.error('Error al crear Material/Herramienta');
         }
     };
-    
+
     return (
         <Modal
             isOpen={isOpen}
@@ -141,7 +147,7 @@ const ModalAddMaterial = ({ isOpen, onClose }) => {
                             className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm bg-gray-100 text-gray-700"
                             required
                         >
-                            <option value="">Seleccionar unidad de medida</option>
+                           <option value="">Seleccionar unidad de medida</option>
                             <option value="bolsa">Bolsa</option>
                             <option value="unidad">Unidad</option>
                             <option value="kg">Kilogramo</option>
@@ -159,6 +165,19 @@ const ModalAddMaterial = ({ isOpen, onClose }) => {
                             <option value="otro">Metro cúbico</option>
                         </select>
                     </div>
+                </div>
+                <div>
+                    <label className="block text-sm font-medium text-gray-700">Valor de Venta</label>
+                    <input
+                        type="number"
+                        id="valorDeVenta"
+                        name="valorDeVenta"
+                        value={material.valorDeVenta}
+                        onChange={handleInputChange}
+                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm bg-gray-100 text-gray-700"
+                        autoComplete="off"
+                        required
+                    />
                 </div>
                 <div>
                     <label className="block text-sm font-medium text-gray-700">Imagen (Opcional)</label>
