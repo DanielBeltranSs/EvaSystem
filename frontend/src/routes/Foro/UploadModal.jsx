@@ -15,7 +15,7 @@ const customStyles = {
         borderRadius: '8px',
         boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
         overflowY: 'auto',
-        backgroundColor: 'white'
+        backgroundColor: 'rgb(19, 0, 61)' // Fondo morado oscuro
     }
 };
 
@@ -46,10 +46,10 @@ const UploadModal = ({ isOpen, onClose, onFileUpload }) => {
             style={customStyles}
         >
             <div className="flex justify-between items-center mb-4">
-                <h2 className="text-lg font-bold text-gray-700">Subir Archivo</h2>
+                <h2 className="text-lg font-bold text-customGreen">Subir Archivo</h2>
                 <button
                     onClick={onClose}
-                    className="text-gray-500 hover:text-gray-700 focus:outline-none"
+                    className="text-customOrange hover:text-customGreen focus:outline-none"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -78,12 +78,12 @@ const UploadModal = ({ isOpen, onClose, onFileUpload }) => {
             <div className="mt-4 text-center">
                 <button
                     onClick={handleButtonClick}
-                    className="bg-gray-700 hover:bg-gray-500 text-white py-2 px-4 rounded-md"
+                    className="bg-customOrange hover:bg-customGreen text-white py-2 px-4 rounded-md"
                 >
                     Seleccionar archivo
                 </button>
                 {selectedFile && (
-                    <div className="mt-4 text-gray-700">
+                    <div className="mt-4 text-customGreen">
                         <p>Archivo seleccionado: {selectedFile.name}</p>
                         <p>Tamaño: {selectedFile.size} bytes</p>
                         <p>Tipo: {selectedFile.type}</p>
@@ -95,13 +95,13 @@ const UploadModal = ({ isOpen, onClose, onFileUpload }) => {
             <div className="flex justify-center mt-4 space-x-4">
                 <button
                     onClick={handleSubmit}
-                    className="bg-gray-700 hover:bg-gray-500 text-white py-2 px-4 rounded-md"
+                    className="bg-customPurple hover:bg-customOrange text-white py-2 px-4 rounded-md"
                 >
                     Subir
                 </button>
                 <button
                     onClick={onClose}
-                    className="bg-gray-700 hover:bg-gray-500 py-2 px-4 rounded-md"
+                    className="bg-customPurple hover:bg-customOrange py-2 px-4 rounded-md text-white"
                 >
                     Cancelar
                 </button>

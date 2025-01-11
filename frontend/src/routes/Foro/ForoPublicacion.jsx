@@ -67,10 +67,10 @@ const NuevoForo = () => {
         <div>
             <div className="">
                 <div className='flex justify-between'>
-                    <h1 className="text-2xl font-bold text-gray-900 ">Nueva Publicación</h1>
+                    <h1 className="text-2xl font-bold text-customGreen">Nueva Publicación</h1>
                     <button
                         onClick={openModal}
-                        className='py-2 px-3 border border-transparent shadow-sm rounded-md bg-gray-700 hover:bg-gray-500'
+                        className='py-2 px-3 border border-transparent shadow-sm rounded-md bg-customOrange hover:bg-customGreen'
                     >
                         <img className='w-5 h-5' src={`${import.meta.env.VITE_BASE_URL}/uploads/addphoto.png`} alt="Agregar Foto" />
                     </button>
@@ -78,34 +78,34 @@ const NuevoForo = () => {
                 </div>
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
-                        <label className="block text-sm font-medium text-gray-700">Título</label>
+                        <label className="block text-sm font-medium text-customGreen">Título</label>
                         <input
                             type="text"
                             id='titulo'
                             name='titulo'
                             value={publicacion.titulo}
                             onChange={handleInputChange}
-                            className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm bg-gray-300 text-gray-700"
+                            className="mt-1 w-full px-3 py-2 border border-customDarkGray rounded-md shadow-sm bg-customDarkGray text-customGreen"
                             autoComplete='off'
                         />
                     </div>
                     
                     <div>
-                        <label className="block text-sm font-medium text-gray-700">Contenido</label>
+                        <label className="block text-sm font-medium text-customGreen">Contenido</label>
                         <textarea
                             type="text"
                             id='contenido'
                             name='contenido'
                             value={publicacion.contenido}
                             onChange={handleInputChange}
-                            className="mt-1 w-full h-80 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none bg-gray-300 text-gray-700"
+                            className="mt-1 w-full h-80 px-3 py-2 border border-customDarkGray rounded-md shadow-sm focus:outline-none bg-customDarkGray text-customGreen"
                             autoComplete='off'
                         />
                     </div>
                     
                     <button
                         type="submit"
-                        className="flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                        className="flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-customPurple hover:bg-customOrange focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-customGreen"
                     >
                         Publicar
                     </button>
